@@ -54,6 +54,27 @@ export default function TransferBalanceButton() {
                             </Form.Item>
                         </Space>
                     </Form.Item>
+                    <Form.Item label="到">
+                        <Space>
+                            <Form.Item
+                                name="to"
+                                noStyle
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: "此項為必填",
+                                    },
+                                ]}
+                            >
+                                <Select placeholder="選擇到哪個帳戶">
+                                    <Option value="spot">現貨</Option>
+                                    <Option value="usdt-futures">
+                                        USDT專業合約
+                                    </Option>
+                                </Select>
+                            </Form.Item>
+                        </Space>
+                    </Form.Item>
                 </Form>
             </Modal>
         </>
