@@ -1,5 +1,7 @@
-import { Button, Modal, Form, Space, Select, Option } from "antd";
+import { Button, Modal, Form, Space, Select } from "antd";
 import { useState } from "react";
+
+const { Option } = Select;
 
 export default function TransferBalanceButton() {
     const [isModalOpen, setIsModalOpen] = useState(false);
