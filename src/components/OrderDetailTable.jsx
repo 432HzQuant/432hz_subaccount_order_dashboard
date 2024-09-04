@@ -230,13 +230,14 @@ function OpenOrders(props) {
 function HistoryOrders(props) {
     const { account, tradingMarket } = props;
     const [historyData, setHistoryData] = useState([]);
-    const [loading, setLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const [symbolFilter, setSymbolFilter] = useState([]);
     const [filteredInfo, setFilteredInfo] = useState({});
     const [sortedInfo, setSortedInfo] = useState({});
 
     useEffect(() => {
         if (account && tradingMarket) {
+            setIsLoading(true);
             axios
                 .get(`/api/bitget/getHistoryOrders/${account}/${tradingMarket}`)
                 .then((res) => {
@@ -257,6 +258,7 @@ function HistoryOrders(props) {
                     } else {
                         setHistoryData(res.data.fillList);
                     }
+                    setIsLoading(false);
                 })
                 .catch((error) => {
                     console.error(error);
@@ -428,19 +430,23 @@ function HistoryOrders(props) {
 
     return (
         <>
-            <Button onClick={clearAll} className="mb-4">
-                清除所有過濾
-            </Button>
-            <Table
-                dataSource={historyData}
-                columns={tradingMarket === "spot" ? spotColumns : futureColumns}
-                scroll={{
-                    x: 200,
-                }}
-                onChange={handleChange}
-            >
-                歷史紀錄
-            </Table>
+            <Spin spinning={isLoading}>
+                <Button onClick={clearAll} className="mb-4">
+                    清除所有過濾
+                </Button>
+                <Table
+                    dataSource={historyData}
+                    columns={
+                        tradingMarket === "spot" ? spotColumns : futureColumns
+                    }
+                    scroll={{
+                        x: 200,
+                    }}
+                    onChange={handleChange}
+                >
+                    歷史紀錄
+                </Table>
+            </Spin>
         </>
     );
 }
@@ -459,6 +465,7 @@ export default function OrderDetailTable(props) {
                     tradingMarket={tradingMarket}
                 />
             ),
+            disabled: account ? false : true,
         },
         {
             key: "2",
@@ -469,6 +476,7 @@ export default function OrderDetailTable(props) {
                     tradingMarket={tradingMarket}
                 />
             ),
+            disabled: account ? false : true,
         },
     ];
     return <Tabs defaultActiveKey="1" items={items} />;
