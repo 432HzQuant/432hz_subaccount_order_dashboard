@@ -558,7 +558,11 @@ export default function Order() {
                             label={
                                 tradingMarket === "spot" ? (
                                     <div className="flex flex-col justify-start">
-                                        <div>數量(USDT)</div>
+                                        <div>
+                                            {values.orderType === "market"
+                                                ? "買入時數量為USDT，賣出時數量為Token"
+                                                : "數量(token)"}
+                                        </div>
                                         <div>
                                             最小下單數量: {minTradeAmount}
                                         </div>
@@ -718,6 +722,7 @@ export default function Order() {
                         cancelOpenOrder={cancelOpenOrder}
                         cancelOrderLoading={cancelOrderLoading}
                         tradingMarket={tradingMarket}
+                        account={account}
                     />
                 </Spin>
             </div>
