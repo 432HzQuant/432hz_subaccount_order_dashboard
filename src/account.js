@@ -1,9 +1,9 @@
 export const accountAPI = {
     spot: {
-        hzBitget: {
-            apiKey: process.env.HZBITGET_BITGET_API_KEY,
-            secret: process.env.HZBITGET_BITGET_SECRET_KEY,
-            password: process.env.HZBITGET_BITGET_PASSWORD,
+        "432hz13": {
+            apiKey: process.env.HZ432_13_BITGET_API_KEY,
+            secret: process.env.HZ432_13_BITGET_SECRET_KEY,
+            password: process.env.HZ432_13_BITGET_PASSWORD,
             options: {
                 defaultType: "spot",
                 createMarketBuyOrderRequiresPrice: false,
@@ -20,10 +20,10 @@ export const accountAPI = {
         // },
     },
     "usdt-futures": {
-        hzBitget: {
-            apiKey: process.env.HZBITGET_BITGET_API_KEY,
-            secret: process.env.HZBITGET_BITGET_SECRET_KEY,
-            password: process.env.HZBITGET_BITGET_PASSWORD,
+        "432hz13": {
+            apiKey: process.env.HZ432_13_BITGET_API_KEY,
+            secret: process.env.HZ432_13_BITGET_SECRET_KEY,
+            password: process.env.HZ432_13_BITGET_PASSWORD,
             options: {
                 defaultType: "future",
                 createMarketBuyOrderRequiresPrice: false,
@@ -43,8 +43,8 @@ export const accountAPI = {
 
 export const accountOptions = [
     {
-        value: "hzBitget",
-        label: "hzBitget",
+        value: "432hz13",
+        label: "432hz13",
     },
     // {
     //     value: "test",
