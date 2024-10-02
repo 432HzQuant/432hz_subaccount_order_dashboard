@@ -64,11 +64,14 @@ function OpenOrders(props) {
             width: 150,
             dataIndex: "lastUpdateTimestamp",
             key: "lastUpdateTimestamp",
-            render: (lastUpdateTimestamp) => (
-                <div>
-                    {transformTimestampToTaipeiDatetime(lastUpdateTimestamp)}
-                </div>
-            ),
+            render: (lastUpdateTimestamp) =>
+                lastUpdateTimestamp && (
+                    <div>
+                        {transformTimestampToTaipeiDatetime(
+                            lastUpdateTimestamp
+                        )}
+                    </div>
+                ),
         },
         {
             title: "取消訂單",

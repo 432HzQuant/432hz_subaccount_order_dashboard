@@ -20,6 +20,7 @@ import OrderDetailTable from "./OrderDetailTable";
 import Balance from "./Balance";
 import { transformTimestampToTaipeiDatetime } from "@/utils";
 import { accountOptions } from "@/account";
+import { useBalance } from "@/hooks/useBalance"; // 引入 useBalance hook
 import TransferBalanceButton from "./TransferBalanceButton";
 
 export default function Order() {
@@ -463,6 +464,10 @@ export default function Order() {
             .catch((error) => console.error(error));
     };
 
+    const handleTransferSuccess = () => {
+        getOpenOrderDetail(account);
+    };
+
     return (
         <div className="flex flex-col md:grid md:grid-cols-3 md:grid-rows-1 gap-4">
             {contextHolder}
@@ -682,7 +687,10 @@ export default function Order() {
             <div className="col-span-2">
                 {isAccountSelected && (
                     <>
-                        <TransferBalanceButton />
+                        <TransferBalanceButton
+                            account={account}
+                            handleTransferSuccess={handleTransferSuccess}
+                        />
                         <Balance
                             balance={balanceData}
                             isBalanceLoading={isBalanceLoading}
